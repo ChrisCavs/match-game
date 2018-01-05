@@ -74,3 +74,10 @@ body {
     margin-bottom: 10px;
   }
 }
+
+/*=====media query for very small screens=====*/
+@media screen and (max-width: 675px) {
+  .card {
+    height: 8rem;
+  }
+}
