@@ -64,7 +64,7 @@ body {
 
 /*=====media query for larger screens=====*/
 @media screen and (min-width: 860px) {
-  html {
+  body {
     max-width: 1200px;
   }
   .card {
