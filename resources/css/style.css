@@ -3,7 +3,7 @@ body {
   font-size: 14px;
   background-color: rgb(255,242,242);
   
-  padding-top: 5.25rem;
+  padding-top: 4rem;
 }
 
 /*=====Instructions - mobile=====*/
@@ -57,7 +57,18 @@ body {
   
   border-radius: 8px;
 
+  cursor: pointer;
+
   background-color: rgb(32,64,86);
 }
-.card-faceup {
+
+/*=====media query for larger screens=====*/
+@media screen and (min-width: 860) {
+  html {
+    max-width: 1200px;
+  }
+  .card {
+    height: 12rem;
+    margin-bottom: 10px;
+  }
 }
