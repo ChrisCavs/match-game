@@ -63,7 +63,7 @@ body {
 }
 
 /*=====media query for larger screens=====*/
-@media screen and (min-width: 860) {
+@media screen and (min-width: 860px) {
   html {
     max-width: 1200px;
   }
