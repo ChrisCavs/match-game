@@ -66,6 +66,8 @@ body {
 @media screen and (min-width: 860px) {
   body {
     max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .card {
     height: 12rem;
