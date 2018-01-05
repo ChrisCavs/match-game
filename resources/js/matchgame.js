@@ -1,12 +1,10 @@
 var MatchGame = {};
 
 $(document).ready(function() {
-  let cardValues = MatchGame.generateCardValues();
-  MatchGame.renderCards(cardValues);
+  MatchGame.renderCards(MatchGame.generateCardValues());
 });
 
 //Generates random array of card values, ordered
-
 MatchGame.generateCardValues = function () {
   let orderedArray = [];
   let cardArray = [];
@@ -64,7 +62,6 @@ MatchGame.renderCards = function(cardArray) {
 
 
 //flips card, deals with game logic
-
 MatchGame.flipCard = function(card, game) {
   
   //if the card is already flipped, do nothing
@@ -98,7 +95,25 @@ MatchGame.flipCard = function(card, game) {
       let counter = game.data('countFlipped') + 1;
       game.data('countFlipped', counter);
       
-      
+      //once countFlipped reaches 8, end the game by fading out
+      if (game.data('countFlipped') == 8) {
+        game.fadeOut("slow");
+
+	//empty the game div, then add in celebration text
+	window.setTimeout(function() {
+	  game.empty()
+	    .text('Well Done!')
+	    .css({'font-size': '2rem', 'justify-content': 'center', 'font-weight': '700'});
+	}, 500);
+
+	//fade in the game div
+	game.fadeIn();
+
+	//start a new game
+	window.setTimeout(function() {
+	  MatchGame.renderCards(MatchGame.generateCardValues());
+	}, 4000);
+      }
     }
     
     //otherwise, return them to 'face-down' position
