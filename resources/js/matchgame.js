@@ -93,6 +93,12 @@ MatchGame.flipCard = function(card, game) {
       };
       flippedCards[0].css(matchedCss);
       flippedCards[1].css(matchedCss);
+      
+      //add to countFlipped (tracking matched pairs)
+      let counter = game.data('countFlipped') + 1;
+      game.data('countFlipped', counter);
+      
+      
     }
     
     //otherwise, return them to 'face-down' position
