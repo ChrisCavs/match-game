@@ -33,9 +33,9 @@ MatchGame.renderCards = function(cardArray) {
     'hsl(310, 85%, 65%)',
     'hsl(360, 85%, 65%)'];
 
-  //empty the "game" div, add data element tracking fipped cards
+  //empty the "game" div, add data element tracking flipped cards + tracking the number of pairs flipped
   $("#game").empty();
-  $("#game").data("flippedCards", []);
+  $("#game").data({flippedCards: [], countFlipped: 0});
 
   //for loop to create all cards
   for (var i=0; i < cardArray.length; i++) {
