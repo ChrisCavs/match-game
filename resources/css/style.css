@@ -91,3 +91,8 @@ button {
     height: 8rem;
   }
 }
+@media screen and (max-width: 525px) {
+  .card {
+    height: 6rem;
+  }
+}
