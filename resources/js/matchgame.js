@@ -63,12 +63,12 @@ MatchGame.renderCards = function(cardArray) {
 
 //flips card, deals with game logic
 MatchGame.flipCard = function(card, game) {
-  
+
   //if the card is already flipped, do nothing
   if (card.data('flipped')) {
     return;
   }
-  
+
   //assign the value and background-color to card, then added flipped=true to data
   card.css('background-color', card.data('color'))
     .text(card.data('value'))
@@ -80,7 +80,7 @@ MatchGame.flipCard = function(card, game) {
 
   //checking if there are two flipped cards (in game data)
   if (flippedCards.length == 2) {
-    
+
     //if they have the same value, grey them out
     if (flippedCards[0].data('value') == flippedCards[1].data('value')) {
       let matchedCss = {
@@ -90,33 +90,33 @@ MatchGame.flipCard = function(card, game) {
       };
       flippedCards[0].css(matchedCss);
       flippedCards[1].css(matchedCss);
-      
+
       //add to countFlipped (tracking matched pairs)
       let counter = game.data('countFlipped') + 1;
       game.data('countFlipped', counter);
-      
+
       //once countFlipped reaches 8, end the game by fading out
       if (game.data('countFlipped') == 8) {
         game.fadeOut("slow");
 
-	//empty the game div, then add in celebration text
-	window.setTimeout(function() {
-	  game.empty()
-	    .text('Well Done!')
-	    .css({'font-size': '2rem', 'justify-content': 'center', 'font-weight': '700'});
-	}, 500);
+        //empty the game div, then add in celebration text
+	      window.setTimeout(function() {
+          game.empty()
+          .text('Well Done!')
+          .css({'font-size': '2rem', 'justify-content': 'center', 'font-weight': '700'});
+        }, 500);
 
-	//fade in the game div
-	game.fadeIn();
+        //fade in the game div
+        game.fadeIn();
 
-	//start a new game
-	window.setTimeout(function() {
-	  MatchGame.renderCards(MatchGame.generateCardValues());
-	}, 4000);
+        //start a new game
+        window.setTimeout(function() {
+          MatchGame.renderCards(MatchGame.generateCardValues());
+        }, 4000);
       }
     }
-    
-    //otherwise, return them to 'face-down' position
+
+    //if they don't match, return them to 'face-down' position
     else {
       window.setTimeout(function () {
         flippedCards[0].css('background-color', 'rgb(32,64,86)')
@@ -125,10 +125,10 @@ MatchGame.flipCard = function(card, game) {
         flippedCards[1].css('background-color', 'rgb(32,64,86)')
           .text('')
           .data('flipped', false);
-      }, 500);
+      }, 400);
     }
 
-    //reset the game data array
+    //reset the flippedCards array to prepare for next two cards flipped
     game.data('flippedCards', []);
   }
 };
