@@ -2,7 +2,7 @@ body {
   font-family: "Work Sans", sans-serif;
   font-size: 14px;
   background-color: rgb(255,242,242);
-  
+
   padding-top: 4rem;
 }
 
@@ -10,14 +10,14 @@ body {
 .instructions {
   display: flex;
   flex-direction: column;
-  
+
   margin-left: 2rem;
   margin-right: 2rem;
 }
 .instructions h1 {
   font-weight: 700;
   font-size: 2.5rem;
-  
+
   color: rgb(32,64,86);
 
   margin-bottom: 1rem;
@@ -36,7 +36,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-content: space-between;
-  
+
   flex-wrap: wrap;
 
   margin: 1rem 2rem 2rem 2rem;
@@ -54,7 +54,7 @@ body {
   color: rgb(255,255,255);
   font-weight: 900;
   font-size: 6rem;
-  
+
   border-radius: 8px;
 
   cursor: pointer;
@@ -63,7 +63,11 @@ body {
 }
 
 button {
-  display: none;
+  display: block;
+
+  opacity: 0;
+
+  margin-top: 2rem;
   margin-left: auto;
   margin-right: auto;
 }

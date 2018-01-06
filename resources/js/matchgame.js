@@ -21,6 +21,14 @@ MatchGame.generateCardValues = function () {
 
 //render the cards (creating board)
 MatchGame.renderCards = function(cardArray) {
+  //return to default css on card-container + play-again button
+  $("#game").css({
+    'justify-content': 'space-between',
+    'margin-top': '1rem',
+    'margin-bottom': '2rem'}
+  );
+  $(":button").css('opacity', '0');
+
   const colors = [
     'hsl(25, 85%, 65%)',
     'hsl(55, 85%, 65%)',
@@ -99,27 +107,34 @@ MatchGame.flipCard = function(card, game) {
       if (game.data('countFlipped') == 8) {
         game.animate({
           opacity: 0,
-        }, "slow");
+        }, 300);
 
         //empty the game div, then add in celebration text
-        game.empty()
-          .text('Well Done!')
-          .css({'font-size': '2rem', 'justify-content': 'center', 'font-weight': '700'});
+        window.setTimeout(function () {
+          game.empty()
+            .text('Well Done!')
+            .css({
+              'font-size': '2rem',
+              'justify-content': 'center',
+              'font-weight': '700',
+              'margin-top': '4rem',
+              'margin-bottom': '4rem'});
+        }, 300);
 
-        //fade in the game div
-        game.animate({
-          opacity: 1,
-        }, "slow");
 
-        //start a new game after 4 seconds
-        window.setTimeout(function() {
-          game.css('justify-content', 'space-between');
-          MatchGame.renderCards(MatchGame.generateCardValues());
-        }, 4000);
+        //fade in the game div + play-again button
+        $(function () {
+          game.animate({
+            opacity: 1,
+          }, "slow");
+          $(":button").animate({
+            opacity: 1,
+          }, "slow");
+        });
       }
     }
 
-    //if they don't match, return them to 'face-down' position
+    //if they don't have the same value, return them to 'face-down' position
     else {
       window.setTimeout(function () {
         flippedCards[0].css('background-color', 'rgb(32,64,86)')
