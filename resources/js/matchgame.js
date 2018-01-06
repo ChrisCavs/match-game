@@ -29,6 +29,7 @@ MatchGame.renderCards = function(cardArray) {
   );
   $(":button").css('opacity', '0');
 
+  //colors used for the backs of our cards
   const colors = [
     'hsl(25, 85%, 65%)',
     'hsl(55, 85%, 65%)',
