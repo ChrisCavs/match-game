@@ -97,20 +97,23 @@ MatchGame.flipCard = function(card, game) {
 
       //once countFlipped reaches 8, end the game by fading out
       if (game.data('countFlipped') == 8) {
-        game.fadeOut("slow");
+        game.animate({
+          opacity: 0,
+        }, "slow");
 
         //empty the game div, then add in celebration text
-	      window.setTimeout(function() {
-          game.empty()
+        game.empty()
           .text('Well Done!')
           .css({'font-size': '2rem', 'justify-content': 'center', 'font-weight': '700'});
-        }, 500);
 
         //fade in the game div
-        game.fadeIn();
+        game.animate({
+          opacity: 1,
+        }, "slow");
 
-        //start a new game
+        //start a new game after 4 seconds
         window.setTimeout(function() {
+          game.css('justify-content', 'space-between');
           MatchGame.renderCards(MatchGame.generateCardValues());
         }, 4000);
       }
