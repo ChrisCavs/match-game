@@ -9,7 +9,7 @@ MatchGame.fade = function (inOut, id1, id2) {
   if (inOut == "in") {
     var Opacity = 0;
     var startStop = setInterval(function () {
-      if (Opacity === 1) {
+      if (Opacity == 1) {
         clearInterval(startStop);
       }
       else {
@@ -22,7 +22,7 @@ MatchGame.fade = function (inOut, id1, id2) {
   else {
     var Opacity = 1;
     var startStop = setInterval(function () {
-      if (Opacity === 0) {
+      if (Opacity == 0) {
         clearInterval(startStop);
       }
       else {
