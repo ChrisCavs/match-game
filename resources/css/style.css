@@ -32,6 +32,12 @@ body {
 }
 
 /*=====Cards - mobile=====*/
+#game {
+  opacity: 1;
+}
+#button {
+  opacity: 0;
+}
 .card-container {
   display: flex;
   justify-content: space-between;

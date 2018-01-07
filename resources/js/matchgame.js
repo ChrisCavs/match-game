@@ -1,5 +1,38 @@
 var MatchGame = {};
 
+MatchGame.fade = function (inOut, id1, id2) {
+  //set elements
+  var elem1 = document.getElementById(id1);
+  var elem2 = document.getElementById(id2);
+
+  //either fade in or fade out
+  if (inOut == "in") {
+    var Opacity = 0;
+    var startStop = setInterval(function () {
+      if (Opacity === 1) {
+        clearInterval(startStop);
+      }
+      else {
+        Opacity = Opacity + .01;
+        elem1.style.opacity = Opacity;
+        elem2.style.opacity = Opacity;
+      }
+    }, 100);
+  }
+  else {
+    var Opacity = 1;
+    var startStop = setInterval(function () {
+      if (Opacity === 0) {
+        clearInterval(startStop);
+      }
+      else {
+        Opacity = Opacity - .01;
+        elem1.style.opacity = Opacity;
+      }
+    }, 100);
+  }
+};
+
 $(document).ready(function() {
   MatchGame.renderCards(MatchGame.generateCardValues());
 });
@@ -106,32 +139,23 @@ MatchGame.flipCard = function(card, game) {
 
       //once countFlipped reaches 8, end the game by fading out
       if (game.data('countFlipped') == 8) {
-        game.animate({
-          opacity: 0,
-        }, 300);
+
+        //fade out
+        MatchGame.fade("out", "game", "button");
 
         //empty the game div, then add in celebration text
-        window.setTimeout(function () {
-          game.empty()
-            .text('Well Done!')
-            .css({
-              'font-size': '2rem',
-              'justify-content': 'center',
-              'font-weight': '700',
-              'margin-top': '4rem',
-              'margin-bottom': '4rem'});
-        }, 300);
+        game.empty()
+          .text('Well Done!')
+          .css({
+            'font-size': '2rem',
+            'justify-content': 'center',
+            'font-weight': '700',
+            'margin-top': '4rem',
+            'margin-bottom': '4rem'
+          }, 400);
 
-
-        //fade in the game div + play-again button
-        $(function () {
-          game.animate({
-            opacity: 1,
-          }, "slow");
-          $(":button").animate({
-            opacity: 1,
-          }, "slow");
-        });
+        //fade in
+        MatchGame.fade("in", "game", "button");
       }
     }
 
