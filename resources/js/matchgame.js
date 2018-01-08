@@ -143,15 +143,17 @@ MatchGame.flipCard = function(card, game) {
         MatchGame.fadeOut("game", "button");
 
         //empty the game div, then add in celebration text
-        game.empty()
-          .text('Well Done!')
-          .css({
-            'font-size': '2rem',
-            'justify-content': 'center',
-            'font-weight': '700',
-            'margin-top': '4rem',
-            'margin-bottom': '4rem'
-          }, 400);
+        window.setTimeout(function () {
+          game.empty()
+            .text('Well Done!')
+            .css({
+              'font-size': '2rem',
+              'justify-content': 'center',
+              'font-weight': '700',
+              'margin-top': '4rem',
+              'margin-bottom': '4rem'
+            });
+          }, 1000);
 
         //fade in
         MatchGame.fadeIn("game", "button");
