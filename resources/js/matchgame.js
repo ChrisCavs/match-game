@@ -126,18 +126,20 @@ MatchGame.flipCard = function(card, game) {
               'margin-bottom': '4rem'
             });
             
-		 //fade-in function once text is changed
+	    //fade-in function once text is changed
             var startStop = setInterval (function () {
               if (opacity == 100) {
                 clearInterval(startStop);
               }
-		   else {
-		     opacity++;
-		     elem1.style.opacity = (opacity*.01);
-		     elem2.style.opacity = (opacity*.01);
-		   }
+	      else {
+		opacity++;
+		elem1.style.opacity = (opacity*.01);
+		elem2.style.opacity = (opacity*.01);
+	      }
             }, 5);
           }
+		
+	  //the initial fade-out
           else {
             opacity--;
             elem1.style.opacity = (opacity*.01);
