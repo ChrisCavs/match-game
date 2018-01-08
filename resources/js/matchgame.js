@@ -112,7 +112,7 @@ MatchGame.flipCard = function(card, game) {
         var elem2 = document.getElementById("button");
         var opacity = 100;
         var startStop = setInterval(function () {
-          
+
           //once faded, change game contents, and fade in
           if (opacity == 0) {
             clearInterval(startStop);
@@ -125,24 +125,24 @@ MatchGame.flipCard = function(card, game) {
               'margin-top': '4rem',
               'margin-bottom': '4rem'
             });
-            
+
 	    //fade-in function once text is changed
             var startStop2 = setInterval (function () {
               if (opacity == 100) {
                 clearInterval(startStop2);
-		
-		//reset the count of matched cards
-		game.data('countFlipped', 0);
+
+                //reset the count of matched cards
+                game.data('countFlipped', 0);
               }
-	      else {
-		opacity++;
-		elem1.style.opacity = (opacity*.01);
-		elem2.style.opacity = (opacity*.01);
-	      }
+              else {
+                opacity++;
+                elem1.style.opacity = (opacity*.01);
+                elem2.style.opacity = (opacity*.01);
+              }
             }, 7);
           }
-		
-	  //the initial fade-out
+
+          //the initial fade-out
           else {
             opacity--;
             elem1.style.opacity = (opacity*.01);
