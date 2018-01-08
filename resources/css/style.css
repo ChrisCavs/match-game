@@ -66,6 +66,8 @@ body {
   cursor: pointer;
 
   background-color: rgb(32,64,86);
+
+  box-shadow: 4px 4px 8px #888888;
 }
 
 button {

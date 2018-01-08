@@ -1,37 +1,5 @@
 var MatchGame = {};
 
-MatchGame.fadeIn = function (id1, id2) {
-  //set elements
-  var elem1 = document.getElementById(id1);
-  var elem2 = document.getElementById(id2);
-  var Opacity = 0;
-  var startStop = setInterval(function () {
-    if (Opacity == 100) {
-      clearInterval(startStop);
-    }
-    else {
-      Opacity = Opacity + 1;
-      elem1.style.opacity = (Opacity*.01);
-      elem2.style.opacity = (Opacity*.01);
-    }
-  }, 10);
-};
-
-MatchGame.fadeOut = function (id1, id2) {
-  var elem1 = document.getElementById(id1);
-  var elem2 = document.getElementById(id2);
-  var Opacity = 100;
-  var startStop = setInterval(function () {
-    if (Opacity == 0) {
-      clearInterval(startStop);
-    }
-    else {
-      Opacity = Opacity - 1;
-      elem1.style.opacity = (Opacity*.01);
-    }
-  }, 10);
-};
-
 $(document).ready(function() {
   MatchGame.renderCards(MatchGame.generateCardValues());
 });
@@ -139,12 +107,16 @@ MatchGame.flipCard = function(card, game) {
       //once countFlipped reaches 8, end the game by fading out
       if (game.data('countFlipped') == 8) {
 
-        //fade out
-        MatchGame.fadeOut("game", "button");
-
-        //empty the game div, then add in celebration text
-        window.setTimeout(function () {
-          game.empty()
+        //fade out (vanilla JS) setup
+        var elem1 = document.getElementById("game");
+        var elem2 = document.getElementById("button");
+        var opacity = 100;
+        var startStop = setInterval(function () {
+          
+          //once faded, change game contents, and fade in
+          if (opacity == 0) {
+            clearInterval(startStop);
+            game.empty()
             .text('Well Done!')
             .css({
               'font-size': '2rem',
@@ -153,10 +125,24 @@ MatchGame.flipCard = function(card, game) {
               'margin-top': '4rem',
               'margin-bottom': '4rem'
             });
-          }, 1000);
-
-        //fade in
-        MatchGame.fadeIn("game", "button");
+            
+		 //fade-in function once text is changed
+            var startStop = setInterval (function () {
+              if (opacity == 100) {
+                clearInterval(startStop);
+              }
+		   else {
+		     opacity++;
+		     elem1.style.opacity = (opacity*.01);
+		     elem2.style.opacity = (opacity*.01);
+		   }
+            }, 5);
+          }
+          else {
+            opacity--;
+            elem1.style.opacity = (opacity*.01);
+          }
+        }, 5);
       }
     }
 
