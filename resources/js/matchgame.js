@@ -153,7 +153,7 @@ MatchGame.flipCard = function(card, game) {
 
     //if they don't have the same value, return them to 'face-down' position
     else {
-      window.setTimeout(function () {
+      setTimeout(function () {
         flippedCards[0].css('background-color', 'rgb(32,64,86)')
           .text('')
           .data('flipped', false);
