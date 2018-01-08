@@ -1,36 +1,35 @@
 var MatchGame = {};
 
-MatchGame.fade = function (inOut, id1, id2) {
+MatchGame.fadeIn = function (id1, id2) {
   //set elements
   var elem1 = document.getElementById(id1);
   var elem2 = document.getElementById(id2);
+  var Opacity = 0;
+  var startStop = setInterval(function () {
+    if (Opacity == 100) {
+      clearInterval(startStop);
+    }
+    else {
+      Opacity = Opacity + 1;
+      elem1.style.opacity = (Opacity*.01);
+      elem2.style.opacity = (Opacity*.01);
+    }
+  }, 10);
+};
 
-  //either fade in or fade out
-  if (inOut == "in") {
-    var Opacity = 0;
-    var startStop = setInterval(function () {
-      if (Opacity == 1) {
-        clearInterval(startStop);
-      }
-      else {
-        Opacity = Opacity + .01;
-        elem1.style.opacity = Opacity;
-        elem2.style.opacity = Opacity;
-      }
-    }, 100);
-  }
-  else {
-    var Opacity = 1;
-    var startStop = setInterval(function () {
-      if (Opacity == 0) {
-        clearInterval(startStop);
-      }
-      else {
-        Opacity = Opacity - .01;
-        elem1.style.opacity = Opacity;
-      }
-    }, 100);
-  }
+MatchGame.fadeOut = function (id1, id2) {
+  var elem1 = document.getElementById(id1);
+  var elem2 = document.getElementById(id2);
+  var Opacity = 100;
+  var startStop = setInterval(function () {
+    if (Opacity == 0) {
+      clearInterval(startStop);
+    }
+    else {
+      Opacity = Opacity - 1;
+      elem1.style.opacity = (Opacity*.01);
+    }
+  }, 10);
 };
 
 $(document).ready(function() {
@@ -141,7 +140,7 @@ MatchGame.flipCard = function(card, game) {
       if (game.data('countFlipped') == 8) {
 
         //fade out
-        MatchGame.fade("out", "game", "button");
+        MatchGame.fadeOut("game", "button");
 
         //empty the game div, then add in celebration text
         game.empty()
@@ -155,7 +154,7 @@ MatchGame.flipCard = function(card, game) {
           }, 400);
 
         //fade in
-        MatchGame.fade("in", "game", "button");
+        MatchGame.fadeIn("game", "button");
       }
     }
 
