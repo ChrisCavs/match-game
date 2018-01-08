@@ -106,32 +106,45 @@ MatchGame.flipCard = function(card, game) {
 
       //once countFlipped reaches 8, end the game by fading out
       if (game.data('countFlipped') == 8) {
-        game.animate({
-          opacity: 0,
-        }, 300);
 
-        //empty the game div, then add in celebration text
-        window.setTimeout(function () {
-          game.empty()
+        //fade out (vanilla JS) setup
+        var elem1 = document.getElementById("game");
+        var elem2 = document.getElementById("button");
+        var opacity = 100;
+        var startStop = setInterval(function () {
+          
+          //once faded, change game contents, and fade in
+          if (opacity == 0) {
+            clearInterval(startStop);
+            game.empty()
             .text('Well Done!')
             .css({
               'font-size': '2rem',
               'justify-content': 'center',
               'font-weight': '700',
               'margin-top': '4rem',
-              'margin-bottom': '4rem'});
-        }, 300);
-
-
-        //fade in the game div + play-again button
-        $(function () {
-          game.animate({
-            opacity: 1,
-          }, "slow");
-          $(":button").animate({
-            opacity: 1,
-          }, "slow");
-        });
+              'margin-bottom': '4rem'
+            });
+            
+	    //fade-in function once text is changed
+            var startStop = setInterval (function () {
+              if (opacity == 100) {
+                clearInterval(startStop);
+              }
+	      else {
+		opacity++;
+		elem1.style.opacity = (opacity*.01);
+		elem2.style.opacity = (opacity*.01);
+	      }
+            }, 5);
+          }
+		
+	  //the initial fade-out
+          else {
+            opacity--;
+            elem1.style.opacity = (opacity*.01);
+          }
+        }, 5);
       }
     }
 

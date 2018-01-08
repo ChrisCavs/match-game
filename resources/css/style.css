@@ -32,6 +32,12 @@ body {
 }
 
 /*=====Cards - mobile=====*/
+#game {
+  opacity: 1;
+}
+#button {
+  opacity: 0;
+}
 .card-container {
   display: flex;
   justify-content: space-between;
@@ -60,6 +66,8 @@ body {
   cursor: pointer;
 
   background-color: rgb(32,64,86);
+
+  box-shadow: 4px 4px 8px #888888;
 }
 
 button {
