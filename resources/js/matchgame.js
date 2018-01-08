@@ -130,6 +130,9 @@ MatchGame.flipCard = function(card, game) {
             var startStop = setInterval (function () {
               if (opacity == 100) {
                 clearInterval(startStop);
+		
+		//reset the count of matched cards
+		game.data('countFlipped', 0);
               }
 	      else {
 		opacity++;
