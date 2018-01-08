@@ -127,9 +127,9 @@ MatchGame.flipCard = function(card, game) {
             });
             
 	    //fade-in function once text is changed
-            var startStop = setInterval (function () {
+            var startStop2 = setInterval (function () {
               if (opacity == 100) {
-                clearInterval(startStop);
+                clearInterval(startStop2);
 		
 		//reset the count of matched cards
 		game.data('countFlipped', 0);
