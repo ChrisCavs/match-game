@@ -139,7 +139,7 @@ MatchGame.flipCard = function(card, game) {
 		elem1.style.opacity = (opacity*.01);
 		elem2.style.opacity = (opacity*.01);
 	      }
-            }, 5);
+            }, 7);
           }
 		
 	  //the initial fade-out
@@ -147,7 +147,7 @@ MatchGame.flipCard = function(card, game) {
             opacity--;
             elem1.style.opacity = (opacity*.01);
           }
-        }, 5);
+        }, 7);
       }
     }
 
