@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 //Generates random array of card values, ordered
 MatchGame.generateCardValues = function () {
+	
     let orderedArray = [];
     let cardArray = [];
     for (var i = 1; i < 9; i++) {
@@ -22,6 +23,7 @@ MatchGame.generateCardValues = function () {
 
 //Render the cards (creating board)
 MatchGame.renderCards = function (cardArray) {
+	
     //return to default css on card-container + play-again button
     const game = document.querySelector('#game');
     const button = document.querySelector('#button');
@@ -75,7 +77,6 @@ MatchGame.renderCards = function (cardArray) {
 }
 
 MatchGame.flipCard = function () {
-console.log(document.querySelectorAll('.card'));
 
     const game = document.querySelector('#game');
     const button = document.querySelector('#button');
