@@ -6,10 +6,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,700,900" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+
+    <div class="instructions">
+      <h1>Match Game</h1>
+      <p class="bold">Rules</p>
+      <p>Click on a card to reveal the number on the other side. Click on a second card to try and find a match to the first. If you succeed, the pair will be removed from play. If not, try again!</p>
+      <p class="bold">How To Win</p>
+      <p>You win when all pairs have been found</p>
+    </div>
+
+    <div class="card-container" id="game">
+    </div>
+
+    <button id="button" onclick="MatchGame.renderCards(MatchGame.generateCardValues())">Ready to play again?</button>
 
     <script src="bundle.js"></script>
   </body>
