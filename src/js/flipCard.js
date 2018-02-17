@@ -1,99 +1,83 @@
-MatchGame.flipCard = function () {
+//handles flip-card logic
+function flipCard () {
 
-    const game = document.querySelector('#game');
-    const button = document.querySelector('#button');
+    const game = document.querySelector('.card-container')
+    const button = document.querySelector('button')
 
     //if the card is already flipped, do nothing
     if (this.classList.contains('flipped')) {
-        return;
+        return
     }
 
     //assign the value and background-color to card, then add class of 'flipped'
-    this.style.backgroundColor = `${this.getAttribute('color')}`;
-    this.innerHTML = `${this.getAttribute('value')}`;
-    this.classList.add('flipped');
+    this.style.backgroundColor = `${this.getAttribute('color')}`
+    this.innerHTML = `${this.getAttribute('value')}`
+    this.classList.add('flipped')
 
     //check if there are two flipped cards
-    if (document.querySelectorAll('.flipped').length == 2) {
-
-		card1 = document.querySelectorAll('.flipped')[0];
-		card2 = document.querySelectorAll('.flipped')[1];
+    const flippedCards = document.querySelectorAll('.flipped')
+    if (flippedCards.length === 2) {
 
         //if the two cards have the same value, grey them out
-        if (card1.getAttribute('value') == card2.getAttribute('value')) {
-            Object.assign(card1.style, {
+        if (flippedCards[0].getAttribute('value') === flippedCards[1].getAttribute('value')) {
+
+          flippedCards.forEach(card => {
+
+            Object.assign(card.style, {
                 'background-color': 'rgb(153,153,153)',
                 'color': 'rgb(204,204,204)',
                 'opacity': '0.2'
-            });
-            Object.assign(card2.style, {
-                'background-color': 'rgb(153,153,153)',
-                'color': 'rgb(204,204,204)',
-                'opacity': '0.2'
-            });
+            })
+          })
 
-            //add to countFlipped (tracking matched pairs)
-            MatchGame.countFlipped++;
+          //add to countFlipped (tracking matched pairs)
+          let count = window.localStorage.getItem('count')
 
-            //then remove the class of 'flipped'
-            card1.classList.remove('flipped');
-            card2.classList.remove('flipped');
+          !count
+            ? count = 1
+            : count++
 
-            //once countFlipped reaches 8, end the game by fading out
-            if (MatchGame.countFlipped == 8) {
+          window.localStorage.setItem('count', count)
 
-                let opacity = 100;
-                let startStop = setInterval(function () {
+          //then remove the class of 'flipped'
+          flippedCards[0].classList.remove('flipped')
+          flippedCards[1].classList.remove('flipped')
 
-                    //once faded, change game contents
-                    if (opacity == 0) {
-                        clearInterval(startStop);
-                        while(game.firstChild) {
-                            game.removeChild(game.firstChild);
-                        };
-                        game.innerHTML = 'Well Done!';
-                        Object.assign(game.style, {
-                            'font-size': '2rem',
-                            'justify-content': 'center',
-                            'font-weight': '700',
-                            'margin-top': '4rem',
-                            'margin-bottom': '4rem'
-                        });
+          //once countFlipped reaches 8, end the game by fading out
+          if (count === 8) {
+            console.log('game-ending')
 
-                        //fade-in
-                        let startStop2 = setInterval(function () {
-                            if (opacity == 100) {
-                                clearInterval(startStop2)
+            game.classList.add('end')
 
-                                MatchGame.countFlipped = 0;
-                            } else {
-                                opacity++;
-                                game.style.opacity = `${opacity*.01}`;
-                                button.style.opacity = `${opacity*.01}`;
-                            }
-                        }, 7);
-                    }
+            game.addEventListener('transitionend', clear)
 
-                    //the initial fade-out
-                    else {
-                        opacity--;
-                        game.style.opacity = `${opacity*.01}`;
-                    }
-                }, 7);
+            function clear () {
+              //empty cards
+              while(game.firstChild) {
+                game.removeChild(game.firstChild)
+              }
+
+              //display play-again button
+              game.innerHTML = 'Well Done!'
+              game.classList.add('well-done')
+              button.classList.add('active')
             }
+          }
         }
 
-        //if they don't have the same value, return them to 'face-down' position
+        //if cards don't have the same value, return them to 'face-down' position
         else {
             setTimeout(function() {
-                card1.style.backgroundColor = 'rgb(32,64,86)';
-                card1.innerHTML = '';
-                card1.classList.remove('flipped');
+                flippedCards[0].style.backgroundColor = 'rgb(32,64,86)'
+                flippedCards[0].innerHTML = ''
+                flippedCards[0].classList.remove('flipped')
 
-                card2.style.backgroundColor = 'rgb(32,64,86)';
-                card2.innerHTML = '';
-                card2.classList.remove('flipped');
-            }, 400);
+                flippedCards[1].style.backgroundColor = 'rgb(32,64,86)'
+                flippedCards[1].innerHTML = ''
+                flippedCards[1].classList.remove('flipped')
+            }, 400)
         }
     }
-};
+}
+
+export {flipCard}

@@ -44,12 +44,14 @@ body {
 }
 
 /*=====Cards - mobile=====*/
-#game {
-  opacity: 1;
-}
-#button {
+
+button {
   opacity: 0;
+  transition-duration: 0.5s;
 }
+    button.active {
+      opacity: 1;
+    }
 .card-container {
   display: flex;
   justify-content: space-between;
@@ -58,7 +60,21 @@ body {
   flex-wrap: wrap;
 
   margin: 1rem 2rem 2rem 2rem;
+
+  opacity: 1;
+  transition: opacity 0.5s;
 }
+    .card-container.end {
+      opacity: 0;
+    }
+    .card-container.well-done {
+      opacity: 1;
+      font-size: 2rem;
+      justify-content: center;
+      font-weight: 700;
+      margin-top: 4rem;
+      margin-bottom: 4rem;
+    }
 .card {
   display: flex;
   justify-content: center;

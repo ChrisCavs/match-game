@@ -1,15 +1,18 @@
-MatchGame.generateCardValues = function () {
+//generates a random array of card values
+const generateCardValues = () => {
 
-    let orderedArray = [];
-    let cardArray = [];
+    let orderedArray = []
+    let cardArray = []
     for (var i = 1; i < 9; i++) {
-        orderedArray.push(i, i);
-    };
+        orderedArray.push(i, i)
+    }
 
     while (orderedArray.length > 0) {
-        let random = Math.floor(Math.random() * orderedArray.length);
-        cardArray.push(orderedArray[random]);
-        orderedArray.splice(random, 1);
+        let random = Math.floor(Math.random() * orderedArray.length)
+        cardArray.push(orderedArray[random])
+        orderedArray.splice(random, 1)
     }
     return cardArray; //ex: [2,4,1,8,3,3,1....]
-};
+}
+
+export {generateCardValues}
