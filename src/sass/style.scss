@@ -1,0 +1,30 @@
+@import "mixins";
+@import "reset";
+
+// PARTIALS
+
+@import "vars";
+@import "base";
+
+// COMPONENTS
+
+@import './components/instructions';
+@import './components/cards';
+
+// OTHER
+
+button {
+  display: block;
+
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+
+  opacity: 0;
+
+  transition-duration: 0.5s;
+}
+
+    button.active {
+      opacity: 1;
+    }

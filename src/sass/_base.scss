@@ -1,0 +1,15 @@
+// BASE
+
+body {
+  font-family: "Work Sans", sans-serif;
+  font-size: 14px;
+  background-color: $background;
+
+  padding-top: 4rem;
+
+  @include min($desktop) {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
