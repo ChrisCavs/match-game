@@ -29,7 +29,7 @@
   justify-content: center;
   align-items: center;
 
-  height: 10rem;
+  height: 8rem;
   width: 24%;
 
   margin-bottom: 7px;
@@ -55,7 +55,7 @@
   }
 
   @include min($tablet) {
-    height: 12rem;
+    height: 10rem;
     margin-bottom: 10px;
   }
 }
