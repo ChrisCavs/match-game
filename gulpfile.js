@@ -34,16 +34,16 @@ const onError = function(error) {
 
 // clean
 
-gulp.task('clean', () => del('dist'))
+gulp.task('clean', () => del('docs'))
 
 // html
 
 gulp.task('html', ['images'], () => {
   return gulp.src('src/html/**/*.html')
     .pipe(plumber({ errorHandler: onError }))
-    .pipe(include({ prefix: '@', basepath: 'dist/images/' }))
+    .pipe(include({ prefix: '@', basepath: 'docs/images/' }))
     .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
-    .pipe(gulp.dest('dist'))
+    .pipe(gulp.dest('docs'))
 })
 
 // sass
@@ -61,7 +61,7 @@ gulp.task('sass', () => {
     .pipe(sass())
     .pipe(postcss(processors))
     .pipe(maps.write('./maps', { addComment: false }))
-    .pipe(gulp.dest('dist'))
+    .pipe(gulp.dest('docs'))
 })
 
 // js
@@ -89,9 +89,9 @@ gulp.task('js', () => {
       // generate the bundle
       const files = bundle.generate(write)
 
-      // write the files to dist
-      fs.writeFileSync('dist/bundle.js', files.code)
-      fs.writeFileSync('dist/maps/bundle.js.map', files.map.toString())
+      // write the files to docs
+      fs.writeFileSync('docs/bundle.js', files.code)
+      fs.writeFileSync('docs/maps/bundle.js.map', files.map.toString())
     })
 })
 
@@ -100,9 +100,9 @@ gulp.task('js', () => {
 gulp.task('images', () => {
   return gulp.src('src/images/**/*.{gif,jpg,png,svg}')
     .pipe(plumber({ errorHandler: onError }))
-    .pipe(changed('dist/images'))
+    .pipe(changed('docs/images'))
     .pipe(imagemin({ progressive: true, interlaced: true }))
-    .pipe(gulp.dest('dist/images'))
+    .pipe(gulp.dest('docs/images'))
 })
 
 // fonts, videos, favicon
@@ -127,7 +127,7 @@ others.forEach(object => {
   gulp.task(object.name, () => {
     return gulp.src('src' + object.src)
       .pipe(plumber({ errorHandler: onError }))
-      .pipe(gulp.dest('dist' + object.dest))
+      .pipe(gulp.dest('docs' + object.dest))
   })
 })
 
@@ -150,7 +150,7 @@ const sendMaps = (req, res, next) => {
 const options = {
   notify: false,
   server: {
-    baseDir: 'dist',
+    baseDir: 'docs',
     middleware: [
       sendMaps
     ]
@@ -174,9 +174,9 @@ gulp.task('watch', () => {
 // build and default tasks
 
 gulp.task('build', ['clean'], () => {
-  // create dist directories
-  fs.mkdirSync('dist')
-  fs.mkdirSync('dist/maps')
+  // create docs directories
+  fs.mkdirSync('docs')
+  fs.mkdirSync('docs/maps')
 
   // run the tasks
   gulp.start('html', 'sass', 'js', 'images', 'fonts', 'videos', 'favicon')
